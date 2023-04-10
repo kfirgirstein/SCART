@@ -26,22 +26,22 @@ Here you can find the PoC for MiTM threats.
 
 ## Installation
 
-Instructions for installing the SCART package and its dependencies can be found in the [MiTM](MiTM/README.md) folder.
+Instructions for installing the SCART package and its dependencies can be found in the [scart](scart/README.md) folder.
 
 ```
-# from the base folder (AADRT) run:
+# from the base folder (SCART) run:
 > python setup.py sdist bdist_wheel
 > pip install . #install from current dir
 ```
 
 ## Usage
 
-Instructions for using the SCART package and its various features can be found in the [MiTM](MiTM/README.md) folder.
+Instructions for using the SCART package and its various features can be found in the [scart](scart/README.md) folder.
 
 ```
->>> import MiTM
->>> from MiTM import *
->>> dir(MiTM)
+>>> import scart
+>>> from scart import *
+>>> dir(scart)
 ['AnomalyObjects', 'Scenario', '__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__spec__', 'history']
 >>> 
 ```

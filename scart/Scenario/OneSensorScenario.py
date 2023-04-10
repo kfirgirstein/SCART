@@ -1,6 +1,6 @@
 #test history and anomalies 
 from  .BaseScenario import AbstractScenario,BasicScenarioCallback
-import MiTM.history as history
+import scart.history as history
 import threading
 
 class OneSensorScenario(AbstractScenario):  

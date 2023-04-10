@@ -1,4 +1,4 @@
-import MiTM.history as history
+import scart.history as history
 import threading
 import sys
 

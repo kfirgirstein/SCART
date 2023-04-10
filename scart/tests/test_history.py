@@ -1,6 +1,6 @@
 #test hisotry and anomlies 
 
-import MiTM.history as history
+import scart.history as history
 import pandas as pd
 from threading import Timer
 import numpy as np

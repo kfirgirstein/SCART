@@ -1,5 +1,5 @@
-import MiTM.Scenario  as Scenario
-import MiTM.AnomalyObjects.Action  as ActionCtrl
+import scart.Scenario  as Scenario
+import scart.AnomalyObjects.Action  as ActionCtrl
 from sensor_msgs.msg import NavSatFix 
 import time
 import copy

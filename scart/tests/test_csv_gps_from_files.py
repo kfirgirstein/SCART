@@ -1,8 +1,8 @@
 #test history and anomalies 
-import MiTM.Scenario  as Scenario
-import MiTM.AnomalyObjects.Action  as ActionCtrl
-import MiTM.AnomalyObjects.Condition  as ConditionCtrl
-import MiTM.AnomalyObjects.Listener  as ListenerCtrl
+import scart.Scenario  as Scenario
+import scart.AnomalyObjects.Action  as ActionCtrl
+import scart.AnomalyObjects.Condition  as ConditionCtrl
+import scart.AnomalyObjects.Listener  as ListenerCtrl
 import json
 import numpy as np
 import pandas as pd

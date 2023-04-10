@@ -1,5 +1,5 @@
 import sys
-from  MiTM.AnomalyObjects import AbstractAnomalyObjectFile
+from  scart.AnomalyObjects import AbstractAnomalyObjectFile
 
 if sys.version_info.major == 3:
     from abc import abstractclassmethod
