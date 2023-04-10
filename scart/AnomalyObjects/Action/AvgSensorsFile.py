@@ -1,15 +1,26 @@
 from .AbstractActionFile import AbstractAction
 
-# Update the first topic in topic list to the average of the topic list values
 class AvgSensors(AbstractAction):
-	Name = "AvgSensors"
-	def __init__(self,scenario):
-		self.topic_history = scenario.topic_history
-		self.sensor_name = scenario.sensor_name
-		self.topic_list = scenario.topic_list
-
+    """
+    Updates the first topic in the topic list to the average of all topic values.
+    """
+    Name = "AvgSensors"
+    
+    def __init__(self, scenario):
+        """
+        Initializes the action with the given scenario.
+        
+        Parameters:
+            scenario (Scenario): The scenario containing the sensor history to modify.
+        """
+        self.topic_history = scenario.topic_history
+        self.sensor_name = scenario.sensor_name
+        self.topic_list = scenario.topic_list
 
 	def do(self):
+		"""
+        Computes the average value of the topics and updates the first topic with the result.
+        """
 		sensor_history = self.topic_history.get_sensor_history(self.sensor_name)
 		history_lst = sensor_history.history
 		

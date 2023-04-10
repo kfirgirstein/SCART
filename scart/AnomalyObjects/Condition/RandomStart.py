@@ -1,39 +1,43 @@
-import imp
-import random as rnd
+from random import SystemRandom
 import threading
+
 from .AbstractConditionFile import AbstractCondition
 
-PERIOD_LIMITS1 = 1
-PERIOD_LIMITS2 = 10
-Frequency = 10
 
 class RandomStart(AbstractCondition):
-    def __init__(self, FILE):
-        self.FILE = FILE
-        self.notonAction = True #if we are in anomaly the value is False else True 
+    """
+    A condition that randomly turns off an action based on a given frequency.
+
+    Attributes:
+        topic_history (TopicHistory): The topic history to get sensor data from.
+        sensor_name (str): The name of the sensor to get data from.
+        random_frequency (int): The frequency of randomization. Defaults to 6.
+        action_is_on (bool): Flag that indicates whether the action is on or off.
+    """
+
+    def __init__(self, scenario):
+        """
+        Initializes a new instance of the RandomStart class.
+        
+        :param scenario: The scenario object that contains the topic history and sensor name.
+        :type scenario: object
+        """
+        self.topic_history = scenario.topic_history
+        self.sensor_name = scenario.sensor_name
+        if not 'frequency' in scenario.__dict__:
+            scenario.frequency = 6
+
+        self.random_frequency = scenario.frequency
+        self.action_is_on = True
+        
     def check_condition(self):
-        topic_history = self.FILE.topic_history
-        SENSOR_NAME = self.FILE.SENSOR_NAME
-        LOGINFO = self.FILE.LOGINFO
-        STATING_TIME = self.FILE.STATING_TIME
-        gps_history = topic_history.get_sensor_history(SENSOR_NAME)
-        if LOGINFO:
-            LOGINFO
-        if self.notonAction:
-            rnd1 = rnd.randrange(0,Frequency)
-            if rnd1 == 1:
-                self.notonAction = False
-                self.FILE.DURATION = 10
-        else:
-            anomalies_thread = threading.Thread(target=self.FILE.action.do)
-            anomalies_thread.start()
-            anomalies_thread.join()
-            if self.FILE.DURATION <= 0:
-                self.FILE.DURATION = 10
-                self.notonAction = True
-
-
-        self.FILE.topic_history = topic_history 
-        self.FILE.SENSOR_NAME = SENSOR_NAME 
-        self.FILE.LOGINFO = LOGINFO
-        self.FILE.STATING_TIME = STATING_TIME
+        """
+        Checks if the action should be turned off randomly based on the set frequency.
+        
+        :return: True if the action is on, False otherwise.
+        :rtype: bool
+        """
+        if 1 == SystemRandom().randrange(0,self.random_frequency):
+            self.action_is_on = False
+        
+        return self.action_is_on
