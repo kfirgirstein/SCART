@@ -1,7 +1,11 @@
 # SCART
 
-[![Build Status](https://travis-ci.org/your_username/your_repo.svg?branch=master)](https://travis-ci.org/your_username/your_repo)
-[![Coverage Status](https://coveralls.io/repos/github/your_username/your_repo/badge.svg?branch=master)](https://coveralls.io/github/your_username/your_repo?branch=master)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Contributing](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](CONTRIBUTING.md)
+[![PyPI version](https://img.shields.io/pypi/v/scart.svg)](https://pypi.org/project/scart/)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/kfirgirstein/SCART)](https://github.com/kfirgirstein/SCART/releases)
+[![GitHub issues](https://img.shields.io/github/issues/kfirgirstein/SCART.svg)](https://github.com/kfirgirstein/SCART/issues)
+[![GitHub forks](https://img.shields.io/github/forks/kfirgirstein/SCART.svg)](https://github.com/kfirgirstein/SCART/network/members)
 
 ## Introduction
 This repository contains code for the SCART framework, an innovative solution for simulating cyber threats in real-time systems. The SCART framework adds a layer to existing simulators of real-time systems, allowing for the simulation of faults and vulnerabilities. The goal of this framework is to increase the reliability of real-time systems by simulating and testing for possible sensor failures and cyber security attacks. The SCART framework is designed to be modular and extensible, allowing for the addition of new types of faults and vulnerabilities. The SCART framework is currently being used to test the resilience of the [AUVSI SUAS Competition](https://www.auvsi-suas.org/).
