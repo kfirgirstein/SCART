@@ -8,7 +8,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/kfirgirstein/SCART.svg)](https://github.com/kfirgirstein/SCART/network/members)
 
 ## Introduction
-This repository contains code for the SCART framework, an innovative solution for simulating cyber threats in real-time systems. The SCART framework adds a layer to existing simulators of real-time systems, allowing for the simulation of faults and vulnerabilities. The goal of this framework is to increase the reliability of real-time systems by simulating and testing for possible sensor failures and cyber security attacks. The SCART framework is designed to be modular and extensible, allowing for the addition of new types of faults and vulnerabilities. The SCART framework is currently being used to test the resilience of the [AUVSI SUAS Competition](https://www.auvsi-suas.org/).
+This repository contains code for the SCART framework, an innovative solution for simulating cyber threats in real-time systems. The SCART framework adds a layer to existing simulators of real-time systems, allowing for the simulation of faults and vulnerabilities. The goal of this framework is to increase the reliability of real-time systems by simulating and testing for possible sensor failures and cyber security attacks. The SCART framework is designed to be modular and extensible, allowing for the addition of new types of faults and vulnerabilities.
 
 Here you can find the PoC for MiTM threats.
 ```
@@ -53,3 +53,18 @@ If you wish to contribute to this project, please follow the guidelines outlined
 ## License
 
 This project is licensed under the [LICENSE](LICENSE) license. A copy of the license can be found in the `LICENSE` file.
+
+## Citation
+If you use the SCART framework in your research or project, please cite our paper:
+
+```
+@article{girstein2023scart,
+      title={SCART: Simulation of Cyber Attacks for Real-Time Digital Twins}, 
+      author={Kfir Girstein and Eliron Rahimi and Prof. Avi Mendelson},
+      year={2023},
+      eprint={2304.03657},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR}
+}
+
+```
