@@ -1,22 +1,9 @@
-"""
-This module provides an abstract class for defining scenarios in a MiTM (Man-in-The-Middle) attack, and a basic scenario callback class.
-
-Classes:
-- AbstractScenario: An abstract class for defining scenarios in a MiTM attack. This class defines the interface for defining starting conditions, ending conditions, actions, and listeners for a scenario.
-- BasicScenarioCallback: A basic implementation of a scenario callback, which executes the scenario's actions when its starting conditions are met, and stops them when its ending conditions are met.
-
-Functions:
-None.
-
-Exceptions:
-None.
-"""
 import scart.history as history
 import threading
 import sys
 
 if sys.version_info.major == 3:
-    from abc import ABC, abstractmethod
+    from abc import ABC, abstractclassmethod
     class AbstractScenario (ABC):
         """
         An abstract class for defining scenarios in a MiTM attack.
@@ -54,7 +41,7 @@ if sys.version_info.major == 3:
             self.__ending_cond = []
             self.__action_ctrl = []
 
-        @abstractmethod
+        @abstractclassmethod
         def getName(self):
 
             """
@@ -68,7 +55,7 @@ if sys.version_info.major == 3:
             """
             pass
 
-        @abstractmethod
+        @abstractclassmethod
         def install_scenario(self):
             """
             An abstract method that installs the scenario.
@@ -185,7 +172,7 @@ if sys.version_info.major == 3:
             """
             self.__listener_ctrl = callback
         
-        @abstractmethod
+        @abstractclassmethod
         def init_parameters(self,**kwargs):
             """
             An abstract method that initializes the parameters of the scenario.
@@ -199,10 +186,9 @@ if sys.version_info.major == 3:
             pass
 
 else:
-    from abc import ABCMeta, abstractclassmethod
+    from abc import ABCMeta, abstractmethod
     class AbstractScenario():
-        __metaclass__ = ABCMeta
-"""
+        """
         An abstract class for defining scenarios in a MiTM attack.
         Attributes:
         - Name (str): The name of the scenario.
@@ -218,6 +204,7 @@ else:
         - getName(): An abstract method that returns the name of the scenario.
         - init_parameters(**kwargs): An abstract method that initializes the parameters of the scenario.
         """
+        __metaclass__ = ABCMeta
         Name = 'AbstractScenario'
         def __init__(self,sensor_name,topic_list,**kwargs):
             """
@@ -238,7 +225,7 @@ else:
             self.__ending_cond = []
             self.__action_ctrl = []
 
-        @abstractclassmethod
+        @abstractmethod
         def getName(self):
 
             """
@@ -252,7 +239,7 @@ else:
             """
             pass
 
-        @abstractclassmethod
+        @abstractmethod
         def install_scenario(self):
             """
             An abstract method that installs the scenario.
@@ -369,7 +356,7 @@ else:
             """
             self.__listener_ctrl = callback
         
-        @abstractclassmethod
+        @abstractmethod
         def init_parameters(self,**kwargs):
             """
             An abstract method that initializes the parameters of the scenario.
@@ -381,126 +368,3 @@ else:
             None.
             """
             pass
-
-
-class BasicScenarioCallback():
-    """
-    A class that defines the basic callback for a scenario.
-
-    Attributes:
-    - __starting_cond (List[Callable[[], bool]]): A private list of starting conditions callbacks for the scenario.
-    - __ending_cond (List[Callable[[], bool]]): A private list of ending conditions callbacks for the scenario.
-    - __action_ctrl (List[Callable[[], None]]): A private list of action callbacks for the scenario.
-    - is_activate (bool): A flag that indicates whether the scenario is activated or not.
-
-    Methods:
-    - getScenarioCallback(): Returns the scenario callback as a lambda function.
-    - scenario_callback(): A callback function that checks for starting conditions, ending conditions, and performs the actions.
-    """
-
-    def __init__(self,starting_cond,ending_cond,action_ctrl):
-        """
-        Initializes a new instance of the BasicScenarioCallback class.
-
-        Parameters:
-        - starting_cond (List[Callable[[], bool]]): A list of starting conditions callbacks for the scenario.
-        - ending_cond (List[Callable[[], bool]]): A list of ending conditions callbacks for the scenario.
-        - action_ctrl (List[Callable[[], None]]): A list of action callbacks for the scenario.
-
-        Returns:
-        None
-        """
-        self.__starting_cond = starting_cond
-        self.__ending_cond = ending_cond
-        self.__action_ctrl = action_ctrl
-        self.is_activate = False
-
-    def getScenarioCallback(self):
-        """
-        Returns the scenario callback as a lambda function.
-
-        Parameters:
-        None.
-
-        Returns:
-        The scenario callback as a lambda function.
-        """
-        return lambda: self.scenario_callback()
-
-    @property
-    def starting_conditions(self):
-        """
-        A property that returns the starting conditions callbacks for the scenario.
-
-        Parameters:
-        None.
-
-        Returns:
-        A list of starting conditions callbacks for the scenario.
-        """
-        return self.__starting_cond
-
-    @property
-    def ending_conditions(self):
-        """
-        A property that returns the ending conditions callbacks for the scenario.
-
-        Parameters:
-        None.
-
-        Returns:
-        A list of ending conditions callbacks for the scenario.
-        """
-        return self.__ending_cond
-
-    @property
-    def actions(self):
-        """
-        Setter for the list of action control objects associated with the scenario
-        
-        Parameters:
-        - callback: A function that represents an action.
-        
-        Returns:
-        None.
-        """
-        return self.__action_ctrl
-
-    def scenario_callback(self):
-        """
-        A callback function that checks for starting conditions, ending conditions, and performs the actions.
-
-        Parameters:
-        None.
-
-        Returns:
-        A boolean value indicating whether the scenario callback succeeded or not.
-        """
-        try:
-            if not self.is_activate:
-                for cond in self.__starting_cond:
-                    if not cond.check_condition():
-                        return True
-                    
-            for cond in self.__ending_cond:
-                if cond.check_condition():
-                    self.is_activate = False
-                    return True
-
-            self.is_activate = True
-            action_threads = []
-            for action in self.__action_ctrl:
-                anomaly_thread = threading.Thread(target=action.do)
-                anomaly_thread.start()
-                action_threads.append(anomaly_thread)
-
-            for action_thread in action_threads:
-                action_thread.join()
-
-        except Exception as e:
-            print(e)
-            print("error in scenario callback")
-            return False
-        
-        return True
-        

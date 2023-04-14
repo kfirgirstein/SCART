@@ -1,2 +1,4 @@
-from .BaseScenario import AbstractScenario,BasicScenarioCallback
+from .BaseScenario import AbstractScenario
+from .AbstractScenarioCallback import AbstractScenarioCallback
+from .BasicScenarioCallback import BasicScenarioCallback
 from .OneSensorScenario import OneSensorScenario

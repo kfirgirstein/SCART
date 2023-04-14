@@ -2,7 +2,8 @@
 import threading
 import sys
 
-from  .BaseScenario import AbstractScenario,BasicScenarioCallback
+from  .BaseScenario import AbstractScenario
+from  .BasicScenarioCallback import BasicScenarioCallback
 import scart.history as history
 
 class OneSensorScenario(AbstractScenario):  

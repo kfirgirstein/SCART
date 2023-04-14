@@ -1,22 +1,21 @@
-from .AbstractActionFile import AbstractAction
+from scart.AnomalyObjects.Action import AbstractAction
 
 class AvgSensors(AbstractAction):
-    """
+	"""
     Updates the first topic in the topic list to the average of all topic values.
     """
-    Name = "AvgSensors"
-    
-    def __init__(self, scenario):
-        """
-        Initializes the action with the given scenario.
-        
-        Parameters:
-            scenario (Scenario): The scenario containing the sensor history to modify.
-        """
-        self.topic_history = scenario.topic_history
-        self.sensor_name = scenario.sensor_name
-        self.topic_list = scenario.topic_list
-
+	Name = "AvgSensors"
+	def __init__(self, scenario):
+		"""
+		Initializes the action with the given scenario.
+		
+		Parameters:
+		scenario (Scenario): The scenario containing the sensor history to modify.
+		"""
+		self.topic_history = scenario.topic_history
+		self.sensor_name = scenario.sensor_name
+		self.topic_list = scenario.topic_list
+		
 	def do(self):
 		"""
         Computes the average value of the topics and updates the first topic with the result.

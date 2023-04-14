@@ -1,5 +1,8 @@
 from setuptools import setup, find_packages
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setup(
     name='scart',
     version='1.0.0',
@@ -7,6 +10,8 @@ setup(
     author='Kfir Girstein',
     author_email='kfirgirstein@campues.technion.ac.il',
     url='https://github.com/kfirgirstein/scart',
+    long_description=long_description,      # Long description read from the the readme file
+    long_description_content_type="text/markdown",
     license='Apache License 2.0',
     keywords=['simulation', 'real-time', 'cybersecurity', 'MITM', 'network', 'attacks'],
     classifiers=[
